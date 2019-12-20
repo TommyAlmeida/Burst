@@ -9,6 +9,7 @@ import pt.dawntech.burst.scraper.scavenger.ScavangerActionWithAuth;
 
 public class CpcdiLoginAction implements ScavangerActionWithAuth {
 
+    private final String BASE_URL = "https://www.cpcdi.pt/Home/Index";
     private WebDriver driver;
 
     public CpcdiLoginAction(ScrapingClient<?> scrapingClient) {
@@ -19,11 +20,11 @@ public class CpcdiLoginAction implements ScavangerActionWithAuth {
 
     @Override
     public void act(AuthProvider authProvider) {
-        if(driver.getCurrentUrl().equalsIgnoreCase("https://www.cpcdi.pt/Home/Index")){
+        if(driver.getCurrentUrl().equalsIgnoreCase(BASE_URL)){
             return;
         }
 
-        driver.get("https://www.cpcdi.pt/Account/Login");
+        driver.get(BASE_URL);
 
         WebElement submitBtn = driver.findElement(By.xpath("//button[contains(.,'Entrar')]"));
         WebElement clientIdField = driver.findElement(By.id("CodCliente"));
